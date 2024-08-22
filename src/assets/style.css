@@ -7,5 +7,9 @@
 }
 
 h1 {
-  @apply pt-8 text-center;
+  @apply pb-2 pt-8;
+}
+
+main {
+  @apply text-center;
 }
