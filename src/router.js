@@ -1,4 +1,6 @@
-import HomeView from '../views/HomeView.vue';
+import AboutView from './views/AboutView.vue';
+import HomeView from './views/HomeView.vue';
+import PostView from './views/PostView.vue';
 import { createRouter, createWebHistory } from 'vue-router';
 
 const router = createRouter({
@@ -12,9 +14,14 @@ const router = createRouter({
     {
       path: '/about',
       name: 'about',
-      component: () => import('../views/AboutView.vue'),
+      component: AboutView,
+    },
+    {
+      path: '/posts/:postId',
+      name: 'posts',
+      component: PostView,
     },
   ],
 });
 
-export default router;
+export { router };

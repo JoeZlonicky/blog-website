@@ -4,6 +4,7 @@ import PostPreview from '@/components/PostPreview.vue';
 import { usePostsStore } from '@/stores/usePostsStore.js';
 import { storeToRefs } from 'pinia';
 import { onMounted, ref } from 'vue';
+import { VueSpinnerSquare } from 'vue3-spinners';
 
 const postsStore = usePostsStore();
 const { posts } = storeToRefs(postsStore);
@@ -31,9 +32,11 @@ onMounted(async () => {
 
 <template>
   <main>
-    <h1>Welcome to <span class="font-bold">TheBlog</span></h1>
-    <p v-if="isFetching">Fetching posts...</p>
-    <p v-else-if="!wasFetchSuccessfull">Failed to fetch posts.</p>
+    <h1 class="mb-4">Welcome to <span class="font-bold">TheBlog</span></h1>
+    <div v-if="isFetching">
+      <VueSpinnerSquare class="mx-auto !bg-white"></VueSpinnerSquare>
+    </div>
+    <p v-else-if="!wasFetchSuccessfull">Failed to load posts.</p>
     <p v-else-if="posts.length === 0">No posts.</p>
     <div v-else class="mx-auto flex max-w-4xl flex-col gap-4 px-4">
       <PostPreview v-for="post in posts" :key="post.id" :post />

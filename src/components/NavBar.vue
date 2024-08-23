@@ -1,6 +1,6 @@
 <template>
   <header
-    class="flex items-stretch justify-between bg-slate-700 px-8 font-bold"
+    class="flex items-stretch justify-between bg-slate-700 px-8 font-bold shadow-xl"
   >
     <RouterLink to="/" class="px-8 py-4 text-3xl">TheBlog</RouterLink>
     <nav class="flex gap-4 text-xl">
