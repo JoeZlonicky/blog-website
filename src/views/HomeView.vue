@@ -1,10 +1,14 @@
 <script setup>
 import { getPosts } from '@/api/getPosts.js';
+import { usePostsStore } from '@/stores/usePostsStore.js';
+import { storeToRefs } from 'pinia';
 import { onMounted, ref } from 'vue';
 
-const posts = ref([]);
-const isFetching = ref(true);
-const wasFetchSuccessfull = ref(undefined);
+const postsStore = usePostsStore();
+const { posts } = storeToRefs(postsStore);
+
+const isFetching = ref(!posts.value);
+const wasFetchSuccessfull = ref(!!posts.value);
 
 async function fetchPosts() {
   try {
@@ -18,7 +22,9 @@ async function fetchPosts() {
 }
 
 onMounted(async () => {
-  await fetchPosts();
+  if (!posts.value) {
+    await fetchPosts();
+  }
 });
 </script>
 
