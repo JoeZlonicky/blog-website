@@ -2,7 +2,7 @@
 
 <template>
   <main>
-    <h1 class="text-3xl">About this blog</h1>
+    <h1>About <span class="font-bold">TheBlog</span></h1>
   </main>
 </template>
 

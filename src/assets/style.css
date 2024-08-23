@@ -7,7 +7,7 @@
 }
 
 h1 {
-  @apply pb-2 pt-8;
+  @apply mb-4 px-4 pb-2 pt-8 text-3xl;
 }
 
 main {
