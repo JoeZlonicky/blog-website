@@ -1,16 +1,14 @@
-<script setup>
+<script setup lang="ts">
+import type { Post } from '@/types/Post.js';
 import { format } from 'date-fns';
 import { RouterLink } from 'vue-router';
 
-defineProps({
-  post: {
-    type: Object,
-    required: true,
-  },
-});
+defineProps<{
+  post: Post;
+}>();
 
-function formatDateString(dateString) {
-  return format(dateString, 'MMM. do, yyyy');
+function formatDate(date: Date) {
+  return format(date, 'MMM. do, yyyy');
 }
 </script>
 
@@ -24,7 +22,7 @@ function formatDateString(dateString) {
     ></RouterLink>
     <div class="text-2xl font-bold">{{ post.title }}</div>
     <div class="font-light">
-      {{ formatDateString(post.createdAt) }} |
+      {{ formatDate(post.createdAt) }} |
       <span class="font-medium">By {{ post.author.username }}</span>
     </div>
 

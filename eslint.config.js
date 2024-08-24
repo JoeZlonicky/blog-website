@@ -1,5 +1,6 @@
 import js from '@eslint/js';
-import eslintConfigPrettier from 'eslint-config-prettier';
+import eslintConfigPrettier from '@vue/eslint-config-prettier';
+import eslintConfigTypescript from '@vue/eslint-config-typescript';
 import vuePlugin from 'eslint-plugin-vue';
 
 export default [
@@ -13,5 +14,6 @@ export default [
       eqeqeq: ['warn', 'smart'],
     },
   },
+  eslintConfigTypescript,
   eslintConfigPrettier,
 ];

@@ -1,3 +1,4 @@
+<script setup lang="ts"></script>
 <template>
   <header
     class="flex items-stretch justify-between bg-slate-700 px-8 font-bold shadow-xl"

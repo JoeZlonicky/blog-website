@@ -1,8 +1,9 @@
+import type { Post } from '@/types/Post';
 import { defineStore } from 'pinia';
-import { ref } from 'vue';
+import { type Ref, ref } from 'vue';
 
 const usePostsStore = defineStore('posts', () => {
-  const posts = ref(null);
+  const posts: Ref<Post[] | null> = ref(null);
   return { posts };
 });
 

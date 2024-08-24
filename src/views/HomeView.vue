@@ -1,7 +1,7 @@
-<script setup>
-import { getPosts } from '@/api/getPosts.js';
+<script setup lang="ts">
+import { getPosts } from '@/api/getPosts';
 import PostPreview from '@/components/PostPreview.vue';
-import { usePostsStore } from '@/stores/usePostsStore.js';
+import { usePostsStore } from '@/stores/usePostsStore';
 import { storeToRefs } from 'pinia';
 import { onMounted, ref } from 'vue';
 import { VueSpinnerSquare } from 'vue3-spinners';
@@ -37,7 +37,7 @@ onMounted(async () => {
       <VueSpinnerSquare class="mx-auto !bg-white"></VueSpinnerSquare>
     </div>
     <p v-else-if="!wasFetchSuccessfull">Failed to load posts.</p>
-    <p v-else-if="posts.length === 0">No posts.</p>
+    <p v-else-if="posts?.length === 0">No posts.</p>
     <div v-else class="mx-auto flex max-w-4xl flex-col gap-4 px-4">
       <PostPreview v-for="post in posts" :key="post.id" :post />
     </div>

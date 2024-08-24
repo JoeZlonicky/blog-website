@@ -1,19 +1,21 @@
-<script setup>
-import { getPost } from '@/api/getPost.js';
+<script setup lang="ts">
+import { getPost } from '@/api/getPost';
+import type { Post } from '@/types/Post';
 import { format } from 'date-fns';
-import { onMounted, ref, watch } from 'vue';
+import { type Ref, onMounted, ref, watch } from 'vue';
 import { VueSpinnerSquare } from 'vue3-spinners';
 import { useRoute } from 'vue-router';
 
 const route = useRoute();
-const post = ref(null);
+const post: Ref<Post | null> = ref(null);
 
 const isFetching = ref(!post.value);
 const wasFetchSuccessfull = ref(!!post.value);
 
 async function fetchPost() {
   try {
-    post.value = await getPost(route.params.postId);
+    const postId = parseInt(route.params.postId as string);
+    post.value = await getPost(postId);
     wasFetchSuccessfull.value = true;
   } catch (err) {
     wasFetchSuccessfull.value = false;
@@ -33,8 +35,8 @@ watch(
   },
 );
 
-function formatDateString(dateString) {
-  return format(dateString, 'MMM. do, yyyy');
+function formatDate(date: Date) {
+  return format(date, 'MMM. do, yyyy');
 }
 </script>
 
@@ -50,13 +52,13 @@ function formatDateString(dateString) {
       <p v-else-if="!wasFetchSuccessfull">Failed to load post.</p>
 
       <template v-else>
-        <h1>{{ post.title }}</h1>
+        <h1>{{ post?.title }}</h1>
         <div class="font-light">
-          {{ formatDateString(post.createdAt) }} |
-          <span class="font-medium">By {{ post.author.username }}</span>
+          {{ formatDate(post!.createdAt) }} |
+          <span class="font-medium">By {{ post?.author.username }}</span>
         </div>
         <div class="mb-8 mt-2 max-w-3xl text-left">
-          {{ post.content }}
+          {{ post?.content }}
         </div>
       </template>
     </main>
@@ -70,7 +72,7 @@ function formatDateString(dateString) {
         <div v-for="comment in post.comments" :key="comment.id">
           <div>{{ comment.content }}</div>
           {{ comment.author.username }} |
-          {{ formatDateString(comment.createdAt) }}
+          {{ formatDate(comment.createdAt) }}
         </div>
       </div>
     </template>
