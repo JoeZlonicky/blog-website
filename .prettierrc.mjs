@@ -5,6 +5,6 @@ export default {
     'prettier-plugin-tailwindcss',
   ],
   singleQuote: true,
-  trailingCommas: 'all',
+  trailingComma: 'all',
   importOrderSortSpecifiers: true,
 };
