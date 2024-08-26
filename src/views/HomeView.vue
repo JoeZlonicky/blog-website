@@ -3,7 +3,6 @@ import PostPreview from '@/components/PostPreview.vue';
 import { usePostsStore } from '@/stores/usePostsStore';
 import { storeToRefs } from 'pinia';
 import { onMounted } from 'vue';
-import { VueSpinnerSquare } from 'vue3-spinners';
 
 const postsStore = usePostsStore();
 const { cachedFeed, didLastFetchSucceed, isFetching, hasDoneFirstFetch } =
@@ -19,9 +18,7 @@ onMounted(async () => {
 <template>
   <main>
     <h1 class="mb-4">Welcome to <span class="font-bold">TheBlog</span></h1>
-    <div v-if="isFetching">
-      <VueSpinnerSquare class="mx-auto !bg-white"></VueSpinnerSquare>
-    </div>
+    <p v-if="isFetching">Loading posts...</p>
     <p v-else-if="!didLastFetchSucceed">Failed to load posts.</p>
     <p v-else-if="cachedFeed?.length === 0">No posts.</p>
     <div v-else class="mx-auto flex max-w-4xl flex-col gap-4 px-4">

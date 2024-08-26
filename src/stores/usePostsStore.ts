@@ -14,24 +14,25 @@ const usePostsStore = defineStore('posts', () => {
   const isFetching: Ref<boolean> = ref(false);
 
   async function fetchPosts() {
-    // TODO: Implement incremental fetching
-    cachedPosts.value = new Map();
-    cachedFeed.value = [];
     isFetching.value = true;
 
     try {
       const posts = await getPosts();
+      cachedPosts.value = new Map();
+      cachedFeed.value = [];
+
       posts.forEach((post) => {
         cachedFeed.value.push(post);
         cachedPosts.value.set(post.id, post);
       });
+
       didLastFetchSucceed.value = true;
       hasDoneFirstFetch.value = true;
     } catch (err) {
       didLastFetchSucceed.value = false;
+    } finally {
+      isFetching.value = false;
     }
-
-    isFetching.value = false;
   }
 
   async function fetchSpecificPost(postId: number) {

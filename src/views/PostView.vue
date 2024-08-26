@@ -1,8 +1,8 @@
 <script setup lang="ts">
+import NameAndDate from '@/components/NameAndDate.vue';
 import PostComment from '@/components/PostComment.vue';
 import { usePostsStore } from '@/stores/usePostsStore';
 import type { Post } from '@/types/Post';
-import formatDate from '@/utility/formatDate';
 import { storeToRefs } from 'pinia';
 import { type Ref, onMounted, ref, watch } from 'vue';
 import { VueSpinnerSquare } from 'vue3-spinners';
@@ -33,21 +33,19 @@ watch(
 <template>
   <div class="mx-auto max-w-6xl px-4">
     <main
-      class="my-8 flex min-h-32 flex-col items-center bg-slate-700 px-4 pt-0"
+      class="my-8 flex min-h-32 flex-col items-center bg-fg-color px-4 pt-0"
     >
-      <div v-if="isFetching" class="flex flex-1 flex-col justify-center">
-        <VueSpinnerSquare class="mx-auto !bg-white"></VueSpinnerSquare>
-      </div>
-
-      <p v-else-if="!didLastFetchSucceed">Failed to load post.</p>
-
+      <p v-if="isFetching" class="my-auto">Loading post...</p>
+      <p v-else-if="!didLastFetchSucceed" class="my-auto">
+        Failed to load post.
+      </p>
       <template v-else-if="post">
         <h1>{{ post?.title }}</h1>
         <div>
-          <span clas="font-light">{{ formatDate(post.createdAt) }}</span> | By
-          <span class="font-medium"
-            >{{ post.author.firstName }} {{ post.author.lastName }}</span
-          >
+          <NameAndDate
+            :name="`${post.author.firstName} ${post.author.lastName}`"
+            :date="post.createdAt"
+          />
         </div>
         <div class="mb-8 mt-2 max-w-3xl text-left text-lg">
           {{ post?.content }}

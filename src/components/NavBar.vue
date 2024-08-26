@@ -1,20 +1,14 @@
 <script setup lang="ts"></script>
 <template>
-  <header
-    class="flex items-stretch justify-between bg-slate-700 px-8 font-bold shadow-xl"
-  >
-    <RouterLink to="/" class="px-8 py-4 text-3xl">TheBlog</RouterLink>
-    <nav class="flex text-xl">
-      <RouterLink
-        class="flex h-full items-center px-8 hover:bg-slate-600"
-        to="/"
-        >Home</RouterLink
-      >
-      <RouterLink
-        class="flex h-full items-center px-8 hover:bg-slate-600"
-        to="/about"
-        >About</RouterLink
-      >
+  <header class="bg-fg-color text-3xl">
+    <div v-if="$route.fullPath === '/'" class="px-8 py-4">
+      <span class="font-bold">TheBlog</span
+      ><span class="text-lg"> By Joe Zlonicky</span>
+    </div>
+    <nav v-else>
+      <RouterLink to="/" class="hover:bg-fg-highlight-color block px-8 py-4">
+        &larr; All Posts
+      </RouterLink>
     </nav>
   </header>
 </template>
