@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { getPost } from '@/api/getPost';
+import PostComment from '@/components/PostComment.vue';
 import type { Post } from '@/types/Post';
-import { format } from 'date-fns';
+import formatDate from '@/utility/formatDate';
 import { type Ref, onMounted, ref, watch } from 'vue';
 import { VueSpinnerSquare } from 'vue3-spinners';
 import { useRoute } from 'vue-router';
@@ -34,16 +35,12 @@ watch(
     await fetchPost();
   },
 );
-
-function formatDate(date: Date) {
-  return format(date, 'MMM. do, yyyy');
-}
 </script>
 
 <template>
-  <div class="px-4">
+  <div class="mx-auto max-w-6xl px-4">
     <main
-      class="mx-auto my-8 flex min-h-32 max-w-6xl flex-col items-center bg-slate-700 px-4 pt-0"
+      class="my-8 flex min-h-32 flex-col items-center bg-slate-700 px-4 pt-0"
     >
       <div v-if="isFetching" class="flex flex-1 flex-col justify-center">
         <VueSpinnerSquare class="mx-auto !bg-white"></VueSpinnerSquare>
@@ -57,23 +54,27 @@ function formatDate(date: Date) {
           {{ formatDate(post!.createdAt) }} |
           <span class="font-medium">By {{ post?.author.username }}</span>
         </div>
-        <div class="mb-8 mt-2 max-w-3xl text-left">
+        <div class="mb-8 mt-2 max-w-3xl text-left text-lg">
           {{ post?.content }}
         </div>
       </template>
     </main>
 
     <template v-if="post">
-      <h2 class="text-center text-3xl">Comments</h2>
+      <h2 class="mb-4 text-center text-3xl">Comments</h2>
       <p v-if="post.comments.length === 0" class="mt-2 text-center">
         No comments so far!
       </p>
-      <div v-else>
-        <div v-for="comment in post.comments" :key="comment.id">
+      <div class="mx-auto max-w-2xl px-2" v-else>
+        <PostComment
+          v-for="comment in post.comments"
+          :key="comment.id"
+          :comment
+        >
           <div>{{ comment.content }}</div>
           {{ comment.author.username }} |
           {{ formatDate(comment.createdAt) }}
-        </div>
+        </PostComment>
       </div>
     </template>
   </div>

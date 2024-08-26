@@ -1,15 +1,11 @@
 <script setup lang="ts">
 import type { Post } from '@/types/Post.js';
-import { format } from 'date-fns';
+import formatDate from '@/utility/formatDate';
 import { RouterLink } from 'vue-router';
 
 defineProps<{
   post: Post;
 }>();
-
-function formatDate(date: Date) {
-  return format(date, 'MMM. do, yyyy');
-}
 </script>
 
 <template>
