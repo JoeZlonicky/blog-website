@@ -1,14 +1,11 @@
-import type { Author } from './Author';
-
 type Comment = {
   id: number;
+  firstName: string;
+  lastInitial: string;
   content: string;
 
   createdAt: Date;
   updatedAt: Date;
-
-  authorId: number;
-  author: Author;
 
   postId: number;
 };

@@ -19,7 +19,9 @@ defineProps<{
     <div class="text-2xl font-bold">{{ post.title }}</div>
     <div class="font-light">
       {{ formatDate(post.createdAt) }} |
-      <span class="font-medium">By {{ post.author.username }}</span>
+      <span class="font-medium"
+        >By {{ post.author.firstName }} {{ post.author.lastName }}</span
+      >
     </div>
 
     <div>

@@ -43,9 +43,11 @@ watch(
 
       <template v-else-if="post">
         <h1>{{ post?.title }}</h1>
-        <div class="font-light">
-          {{ formatDate(post.createdAt) }} |
-          <span class="font-medium">By {{ post?.author.username }}</span>
+        <div>
+          <span clas="font-light">{{ formatDate(post.createdAt) }}</span> | By
+          <span class="font-medium"
+            >{{ post.author.firstName }} {{ post.author.lastName }}</span
+          >
         </div>
         <div class="mb-8 mt-2 max-w-3xl text-left text-lg">
           {{ post?.content }}
@@ -63,11 +65,7 @@ watch(
           v-for="comment in post.comments"
           :key="comment.id"
           :comment
-        >
-          <div>{{ comment.content }}</div>
-          {{ comment.author.username }} |
-          {{ formatDate(comment.createdAt) }}
-        </PostComment>
+        />
       </div>
     </template>
   </div>
