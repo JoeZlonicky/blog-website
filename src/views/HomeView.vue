@@ -1,31 +1,17 @@
 <script setup lang="ts">
-import { getPosts } from '@/api/getPosts';
 import PostPreview from '@/components/PostPreview.vue';
 import { usePostsStore } from '@/stores/usePostsStore';
 import { storeToRefs } from 'pinia';
-import { onMounted, ref } from 'vue';
+import { onMounted } from 'vue';
 import { VueSpinnerSquare } from 'vue3-spinners';
 
 const postsStore = usePostsStore();
-const { posts } = storeToRefs(postsStore);
-
-const isFetching = ref(!posts.value);
-const wasFetchSuccessfull = ref(!!posts.value);
-
-async function fetchPosts() {
-  try {
-    posts.value = await getPosts();
-    wasFetchSuccessfull.value = true;
-  } catch (err) {
-    wasFetchSuccessfull.value = false;
-  }
-
-  isFetching.value = false;
-}
+const { cachedFeed, didLastFetchSucceed, isFetching, hasDoneFirstFetch } =
+  storeToRefs(postsStore);
 
 onMounted(async () => {
-  if (!posts.value) {
-    await fetchPosts();
+  if (!hasDoneFirstFetch.value) {
+    await postsStore.fetchPosts();
   }
 });
 </script>
@@ -36,10 +22,10 @@ onMounted(async () => {
     <div v-if="isFetching">
       <VueSpinnerSquare class="mx-auto !bg-white"></VueSpinnerSquare>
     </div>
-    <p v-else-if="!wasFetchSuccessfull">Failed to load posts.</p>
-    <p v-else-if="posts?.length === 0">No posts.</p>
+    <p v-else-if="!didLastFetchSucceed">Failed to load posts.</p>
+    <p v-else-if="cachedFeed?.length === 0">No posts.</p>
     <div v-else class="mx-auto flex max-w-4xl flex-col gap-4 px-4">
-      <PostPreview v-for="post in posts" :key="post.id" :post />
+      <PostPreview v-for="post in cachedFeed" :key="post.id" :post />
     </div>
   </main>
 </template>

@@ -1,39 +1,32 @@
 <script setup lang="ts">
-import { getPost } from '@/api/getPost';
 import PostComment from '@/components/PostComment.vue';
+import { usePostsStore } from '@/stores/usePostsStore';
 import type { Post } from '@/types/Post';
 import formatDate from '@/utility/formatDate';
+import { storeToRefs } from 'pinia';
 import { type Ref, onMounted, ref, watch } from 'vue';
 import { VueSpinnerSquare } from 'vue3-spinners';
 import { useRoute } from 'vue-router';
 
 const route = useRoute();
-const post: Ref<Post | null> = ref(null);
 
-const isFetching = ref(!post.value);
-const wasFetchSuccessfull = ref(!!post.value);
+const post: Ref<Post | undefined> = ref(undefined);
 
-async function fetchPost() {
-  try {
-    const postId = parseInt(route.params.postId as string);
-    post.value = await getPost(postId);
-    wasFetchSuccessfull.value = true;
-  } catch (err) {
-    wasFetchSuccessfull.value = false;
-  }
+const postsStore = usePostsStore();
+const { didLastFetchSucceed, isFetching, cachedPosts } =
+  storeToRefs(postsStore);
 
-  isFetching.value = false;
+async function updatePost() {
+  const postId = parseInt(route.params.postId as string);
+  await postsStore.fetchSpecificPost(postId);
+  post.value = cachedPosts.value.get(postId);
 }
 
-onMounted(async () => {
-  await fetchPost();
-});
+onMounted(async () => updatePost());
 
 watch(
   () => route.params.postId,
-  async () => {
-    await fetchPost();
-  },
+  async () => updatePost(),
 );
 </script>
 
@@ -46,12 +39,12 @@ watch(
         <VueSpinnerSquare class="mx-auto !bg-white"></VueSpinnerSquare>
       </div>
 
-      <p v-else-if="!wasFetchSuccessfull">Failed to load post.</p>
+      <p v-else-if="!didLastFetchSucceed">Failed to load post.</p>
 
-      <template v-else>
+      <template v-else-if="post">
         <h1>{{ post?.title }}</h1>
         <div class="font-light">
-          {{ formatDate(post!.createdAt) }} |
+          {{ formatDate(post.createdAt) }} |
           <span class="font-medium">By {{ post?.author.username }}</span>
         </div>
         <div class="mb-8 mt-2 max-w-3xl text-left text-lg">
