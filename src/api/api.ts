@@ -1,7 +1,7 @@
 import Axios from 'axios';
 
-const axios = Axios.create({
+const api = Axios.create({
   baseURL: import.meta.env.VITE_BLOG_API_URL,
 });
 
-export { axios };
+export { api };

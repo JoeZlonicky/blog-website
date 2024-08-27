@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import NameAndDate from '@/components/NameAndDate.vue';
+import NewCommentForm from '@/components/NewCommentForm.vue';
 import PostComment from '@/components/PostComment.vue';
 import { usePostsStore } from '@/stores/usePostsStore';
 import type { Post } from '@/types/Post';
 import { storeToRefs } from 'pinia';
 import { type Ref, onMounted, ref, watch } from 'vue';
-import { VueSpinnerSquare } from 'vue3-spinners';
 import { useRoute } from 'vue-router';
 
 const route = useRoute();
@@ -54,11 +54,12 @@ watch(
     </main>
 
     <template v-if="post">
+      <NewCommentForm class="mx-auto mb-4 max-w-2xl" :post-id="post.id" />
       <h2 class="mb-4 text-center text-3xl">Comments</h2>
-      <p v-if="post.comments.length === 0" class="mt-2 text-center">
+      <p v-if="post.comments.length === 0" class="text-center">
         No comments so far!
       </p>
-      <div class="mx-auto max-w-2xl px-2" v-else>
+      <div class="mx-auto flex max-w-2xl flex-col gap-2" v-else>
         <PostComment
           v-for="comment in post.comments"
           :key="comment.id"

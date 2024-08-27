@@ -19,8 +19,7 @@
     "date-fns": "^3.6.0",
     "pinia": "^2.2.2",
     "vue": "^3.4.29",
-    "vue-router": "^4.3.3",
-    "vue3-spinners": "^1.2.2"
+    "vue-router": "^4.3.3"
   },
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^4.3.0",

@@ -6,10 +6,31 @@
   @apply bg-bg-color text-text-color;
 }
 
+body {
+  @apply pb-44;
+}
+
 h1 {
   @apply px-4 pb-2 pt-8 text-4xl;
 }
 
 main {
   @apply text-center;
+}
+
+input,
+textarea {
+  @apply text-dark-text-color p-1;
+}
+
+button {
+  @apply bg-accent-color px-4 py-2 font-bold;
+}
+
+button:hover:not(:active) {
+  @apply bg-accent-highlight-color;
+}
+
+input[type='checkbox'] {
+  @apply accent-accent-color h-4 w-4;
 }
