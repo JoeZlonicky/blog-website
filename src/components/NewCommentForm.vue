@@ -50,16 +50,16 @@ async function onFormSubmit() {
 <template>
   <form
     ref="form"
-    @submit.prevent="onFormSubmit"
     class="flex flex-col gap-4 bg-fg-color p-4"
+    @submit.prevent="onFormSubmit"
   >
     <div>
       <label for="comment-content" class="mb-2 block text-lg"
         >Leave a comment:</label
       >
       <textarea
-        v-model="content"
         id="comment-content"
+        v-model="content"
         class="min-h-24 w-full p-1"
         required
       ></textarea>
@@ -69,8 +69,8 @@ async function onFormSubmit() {
       <span class="flex items-center gap-2">
         <label for="first-name">First name:</label>
         <input
-          v-model="firstName"
           id="first-name"
+          v-model="firstName"
           class="capitalize"
           pattern="[a-zA-Z]+"
           title="Characters with no spaces"
@@ -80,8 +80,8 @@ async function onFormSubmit() {
       <span class="flex items-center gap-2">
         <label for="last-initial">Last initial:</label>
         <input
-          v-model="lastInitial"
           id="last-initial"
+          v-model="lastInitial"
           class="w-10 capitalize"
           pattern="[a-zA-Z]+"
           title="A single character"
@@ -96,7 +96,7 @@ async function onFormSubmit() {
         >I understand that this comment will undergo approval and cannot be
         edited or deleted once submitted:</label
       >
-      <input class="ml-2" type="checkbox" id="understand" required />
+      <input id="understand" class="ml-2" type="checkbox" required />
     </div>
 
     <p v-if="submitStatus === Status.Submitting" class="text-center">

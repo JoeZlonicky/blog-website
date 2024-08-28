@@ -59,7 +59,7 @@ watch(
       <p v-if="post.comments.length === 0" class="text-center">
         No comments so far!
       </p>
-      <div class="mx-auto flex max-w-2xl flex-col gap-2" v-else>
+      <div v-else class="mx-auto flex max-w-2xl flex-col gap-2">
         <PostComment
           v-for="comment in post.comments"
           :key="comment.id"

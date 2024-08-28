@@ -6,7 +6,7 @@
       ><span class="text-lg"> By Joe Zlonicky</span>
     </div>
     <nav v-else>
-      <RouterLink to="/" class="hover:bg-fg-highlight-color block px-8 py-4">
+      <RouterLink to="/" class="block px-8 py-4 hover:bg-fg-highlight-color">
         &larr; All Posts
       </RouterLink>
     </nav>

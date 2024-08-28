@@ -20,7 +20,7 @@ main {
 
 input,
 textarea {
-  @apply text-dark-text-color p-1;
+  @apply p-1 text-dark-text-color;
 }
 
 button {
@@ -32,5 +32,5 @@ button:hover:not(:active) {
 }
 
 input[type='checkbox'] {
-  @apply accent-accent-color h-4 w-4;
+  @apply h-4 w-4 accent-accent-color;
 }
