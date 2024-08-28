@@ -10,14 +10,14 @@ defineProps<{
 
 <template>
   <article
-    class="bg-primary hover:bg-primary-highlight relative flex flex-col gap-1 p-4 text-start"
+    class="bg-primary hover:bg-primary-highlight relative flex flex-col gap-1 p-4 text-start shadow-md"
   >
     <RouterLink
       :to="`post/${post.id}`"
       class="absolute inset-0 cursor-pointer"
       :aria-label="post.title"
     ></RouterLink>
-    <div class="text-2xl font-bold">{{ post.title }}</div>
+    <div class="text-2xl font-bold capitalize">{{ post.title }}</div>
     <div>
       <NameAndDate
         :name="`${post.author.firstName} ${post.author.lastName}`"

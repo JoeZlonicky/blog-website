@@ -12,6 +12,6 @@ function formatDate(date: Date): string {
 </script>
 
 <template>
-  <span class="text-accent font-medium">{{ name }}</span> |
+  <span class="text-accent font-medium capitalize">{{ name }}</span> |
   <span class="font-light">{{ formatDate(date) }}</span>
 </template>

@@ -31,21 +31,23 @@ watch(
 </script>
 
 <template>
-  <div class="mx-auto max-w-6xl px-4">
-    <main class="bg-primary my-8 flex min-h-32 flex-col items-center px-4 pt-0">
+  <div class="mx-auto max-w-4xl px-4">
+    <main
+      class="bg-primary my-8 flex min-h-32 flex-col items-center px-4 pt-0 shadow-md"
+    >
       <p v-if="isFetching" class="my-auto">Loading post...</p>
       <p v-else-if="!didLastFetchSucceed" class="my-auto">
         Failed to load post.
       </p>
       <template v-else-if="post">
-        <h1>{{ post?.title }}</h1>
+        <h1 class="capitalize">{{ post?.title }}</h1>
         <div>
           <NameAndDate
             :name="`${post.author.firstName} ${post.author.lastName}`"
             :date="post.createdAt"
           />
         </div>
-        <div class="mb-8 mt-2 max-w-3xl text-left text-lg">
+        <div class="mb-8 mt-2 max-w-3xl whitespace-pre-wrap text-left text-lg">
           {{ post?.content }}
         </div>
       </template>

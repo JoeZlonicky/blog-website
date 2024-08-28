@@ -1,6 +1,6 @@
 <script setup lang="ts"></script>
 <template>
-  <header class="bg-primary text-3xl">
+  <header class="bg-primary text-3xl shadow-md">
     <div v-if="$route.fullPath === '/'" class="px-8 py-4">
       <span class="text-accent font-bold">TheBlog</span
       ><span class="text-lg"> By Joe Zlonicky</span>

@@ -7,7 +7,7 @@ defineProps<{
 }>();
 </script>
 <template>
-  <div class="bg-primary px-4 py-4">
+  <div class="bg-primary px-4 py-4 shadow-md">
     <div class="mb-1">
       <NameAndDate
         :name="comment.firstName + comment.lastInitial"
