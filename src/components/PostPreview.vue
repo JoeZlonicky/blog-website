@@ -13,7 +13,7 @@ defineProps<{
     class="bg-primary hover:bg-primary-highlight relative flex flex-col gap-1 p-4 text-start"
   >
     <RouterLink
-      :to="`posts/${post.id}`"
+      :to="`post/${post.id}`"
       class="absolute inset-0 cursor-pointer"
       :aria-label="post.title"
     ></RouterLink>
