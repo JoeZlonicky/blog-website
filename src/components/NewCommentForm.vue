@@ -50,7 +50,7 @@ async function onFormSubmit() {
 <template>
   <form
     ref="form"
-    class="flex flex-col gap-4 bg-fg-color p-4"
+    class="bg-primary flex flex-col gap-4 p-4"
     @submit.prevent="onFormSubmit"
   >
     <div>

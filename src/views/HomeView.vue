@@ -17,7 +17,9 @@ onMounted(async () => {
 
 <template>
   <main>
-    <h1 class="mb-4">Welcome to <span class="font-bold">TheBlog</span></h1>
+    <h1 class="mb-4">
+      Welcome to <span class="text-accent font-bold">TheBlog</span>
+    </h1>
     <p v-if="isFetching">Loading posts...</p>
     <p v-else-if="!didLastFetchSucceed">Failed to load posts.</p>
     <p v-else-if="cachedFeed?.length === 0">No posts.</p>

@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-  @apply bg-bg-color text-text-color;
+  @apply bg-secondary text-primary-text;
 }
 
 body {
@@ -20,17 +20,17 @@ main {
 
 input,
 textarea {
-  @apply p-1 text-dark-text-color;
+  @apply text-input-text p-1;
 }
 
 button {
-  @apply bg-accent-color px-4 py-2 font-bold;
+  @apply bg-input-bg px-4 py-2 font-bold;
 }
 
 button:hover:not(:active) {
-  @apply bg-accent-highlight-color;
+  @apply bg-input-bg-highlight;
 }
 
 input[type='checkbox'] {
-  @apply h-4 w-4 accent-accent-color;
+  @apply accent-input-bg h-4 w-4;
 }

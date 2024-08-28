@@ -10,7 +10,7 @@ defineProps<{
 
 <template>
   <article
-    class="relative flex flex-col gap-1 bg-fg-color p-4 text-start hover:bg-fg-highlight-color"
+    class="bg-primary hover:bg-primary-highlight relative flex flex-col gap-1 p-4 text-start"
   >
     <RouterLink
       :to="`posts/${post.id}`"

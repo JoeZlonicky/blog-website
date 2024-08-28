@@ -32,9 +32,7 @@ watch(
 
 <template>
   <div class="mx-auto max-w-6xl px-4">
-    <main
-      class="my-8 flex min-h-32 flex-col items-center bg-fg-color px-4 pt-0"
-    >
+    <main class="bg-primary my-8 flex min-h-32 flex-col items-center px-4 pt-0">
       <p v-if="isFetching" class="my-auto">Loading post...</p>
       <p v-else-if="!didLastFetchSucceed" class="my-auto">
         Failed to load post.
