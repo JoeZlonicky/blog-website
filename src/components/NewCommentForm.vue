@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { postComment } from '@/api/postComment';
-import { type Ref, defineModel, ref } from 'vue';
+import { type Ref, ref } from 'vue';
 
 const props = defineProps<{
   postId: number;
