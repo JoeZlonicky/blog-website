@@ -1,6 +1,6 @@
-import { api } from './api.js';
-import { parsePostDates } from './parsePostDates.js';
-import type { Post } from '@/types/Post.js';
+import { api } from './api';
+import { parsePostDates } from './parsePostDates';
+import type { Post } from '@/types/Post';
 
 async function getPosts(): Promise<Post[]> {
   const res = await api.get('/posts');

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import NameAndDate from './NameAndDate.vue';
-import type { Post } from '@/types/Post.js';
+import type { Post } from '@/types/Post';
 import { RouterLink } from 'vue-router';
 
 defineProps<{
@@ -10,7 +10,7 @@ defineProps<{
 
 <template>
   <article
-    class="bg-primary hover:bg-primary-highlight relative flex flex-col gap-1 p-4 text-start shadow-md"
+    class="relative flex flex-col gap-1 bg-primary p-4 text-start shadow-md hover:bg-primary-highlight"
   >
     <RouterLink
       :to="`post/${post.id}`"
