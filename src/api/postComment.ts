@@ -6,7 +6,6 @@ async function postComment(
   firstName: string,
   lastInitial: string,
 ) {
-  console.log(postId, content, firstName, lastInitial);
   await api.post('/comments', { postId, content, firstName, lastInitial });
 }
 
