@@ -4,7 +4,7 @@ import type { Post } from '@/types/Post';
 
 async function getPosts(): Promise<Post[]> {
   const res = await api.get('/posts');
-  const posts: Post[] = res.data.results;
+  const posts: Post[] = res.data;
   posts.forEach((post) => {
     parsePostDates(post);
   });
