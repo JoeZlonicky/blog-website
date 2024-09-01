@@ -33,7 +33,7 @@ watch(
 <template>
   <div class="mx-auto max-w-4xl px-4">
     <main
-      class="bg-primary my-8 flex min-h-32 flex-col items-center px-4 pt-0 shadow-md"
+      class="my-8 flex min-h-32 flex-col items-center bg-primary px-4 pt-0 shadow-md"
     >
       <p v-if="isFetching" class="my-auto">Loading post...</p>
       <p v-else-if="!didLastFetchSucceed" class="my-auto">
@@ -44,7 +44,7 @@ watch(
         <div>
           <NameAndDate
             :name="`${post.author.firstName} ${post.author.lastName}`"
-            :date="post.createdAt"
+            :date="post.publishedAt"
           />
         </div>
         <div class="mb-8 mt-2 max-w-3xl whitespace-pre-wrap text-left text-lg">

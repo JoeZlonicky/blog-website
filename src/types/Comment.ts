@@ -5,9 +5,6 @@ type Comment = {
   content: string;
 
   createdAt: Date;
-  updatedAt: Date;
-
-  postId: number;
 };
 
 export type { Comment };

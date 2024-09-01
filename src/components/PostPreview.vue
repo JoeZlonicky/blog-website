@@ -21,7 +21,7 @@ defineProps<{
     <div>
       <NameAndDate
         :name="`${post.author.firstName} ${post.author.lastName}`"
-        :date="post.createdAt"
+        :date="post.publishedAt"
       />
     </div>
 
